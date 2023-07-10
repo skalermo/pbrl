@@ -77,6 +77,8 @@ class BasePolicy:
         return t.detach().cpu().numpy()
 
     def n2t(self, n: np.ndarray) -> torch.Tensor:
+        if type(n) == list:
+            n = np.array(n)
         if n.dtype == np.float64:
             n = n.astype(np.float32)
         if n.dtype == np.uint8:

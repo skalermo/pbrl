@@ -22,6 +22,10 @@ class Runner(BaseRunner):
             else:
                 actions, self.states_actor = policy.act(observations, self.states_actor)
             self.observations, rewards, terminateds, truncateds, infos = self.env.step(policy.wrap_actions(actions))
+            if type(terminateds) != list:
+                terminateds = [terminateds]
+            if type(truncateds) != list:
+                truncateds = [truncateds]
             dones = [te or tr for te, tr in zip(terminateds, truncateds)]
 
             timestep += self.env_num

@@ -14,7 +14,10 @@ class BaseRunner:
             render: Optional[float] = None
     ):
         self.env = env
-        self.env_num = env.env_num
+        try:
+            self.env_num = env.num_envs
+        except:
+            self.env_num = 1
 
         self.observations = None
         self.states_actor = None
