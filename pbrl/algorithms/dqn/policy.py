@@ -3,7 +3,7 @@ from typing import Optional, List, Type
 
 import numpy as np
 import torch
-from gym.spaces import Space
+from gymnasium.spaces import Space
 
 from pbrl.algorithms.dqn.net import QNet
 from pbrl.common.map import auto_map, map_cpu

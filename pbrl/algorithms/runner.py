@@ -26,7 +26,7 @@ class BaseRunner:
         self.episode_steps = np.zeros(self.env_num, dtype=int)
 
     def reset(self):
-        self.observations = self.env.reset()
+        self.observations = self.env.reset()[0]
         self.states_actor = None
         self.episode_rewards[:] = 0.
         self.returns[:] = 0.

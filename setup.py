@@ -13,7 +13,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'pyglet',
-        'gym==0.19',
+        'gymnasium',
         'numpy>=1.19',
         'cloudpickle',
         'tensorboard',

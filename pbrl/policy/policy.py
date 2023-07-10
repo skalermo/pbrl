@@ -2,7 +2,7 @@ from typing import Callable, Optional, Tuple, Any, List, Type
 
 import numpy as np
 import torch
-from gym.spaces import Box, Discrete, Space
+from gymnasium.spaces import Box, Discrete, Space
 
 from pbrl.common.rms import RunningMeanStd
 from pbrl.policy.wrapper import ActionWrapper, TanhWrapper, ClipWrapper

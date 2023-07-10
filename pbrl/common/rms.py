@@ -1,4 +1,4 @@
-import gym.spaces
+import gymnasium.spaces
 import numpy as np
 
 from pbrl.common.map import merge_map
@@ -84,9 +84,9 @@ def extend(data, rms1, rms2):
 
 
 def map_space(f, x):
-    if isinstance(x, gym.spaces.Dict):
+    if isinstance(x, gymnasium.spaces.Dict):
         return {k: map_space(f, v) for k, v in x.spaces.items()}
-    elif isinstance(x, gym.spaces.Tuple):
+    elif isinstance(x, gymnasium.spaces.Tuple):
         return tuple(map_space(f, e) for e in x.spaces)
     else:
         return f(x)

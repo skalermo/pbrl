@@ -1,7 +1,7 @@
 import argparse
 import time
 
-import gym
+import gymnasium
 import numpy as np
 import torch
 from pbrl.algorithms.ppg import AuxActor, PPG
@@ -12,7 +12,8 @@ from pbrl.env import DummyVecEnv
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--env', type=str, default='Humanoid-v3')
+    # parser.add_argument('--env', type=str, default='Humanoid-v3')
+    parser.add_argument('--env', type=str, default='CartPole-v1')
     parser.add_argument('--test_interval', type=int, default=20480)
     parser.add_argument('--log_interval', type=int, default=20480)
     parser.add_argument('--seed', type=int, default=0)
@@ -50,8 +51,8 @@ def main():
 
     logger = Logger(filename_log)
     # define train and test environment
-    env_train = DummyVecEnv([lambda: gym.make(args.env) for _ in range(args.env_num)])
-    env_test = DummyVecEnv([lambda: gym.make(args.env)])
+    env_train = DummyVecEnv([lambda: gymnasium.make(args.env) for _ in range(args.env_num)])
+    env_test = DummyVecEnv([lambda: gymnasium.make(args.env)])
     env_train.seed(args.seed)
     env_test.seed(args.seed)
     # define policy

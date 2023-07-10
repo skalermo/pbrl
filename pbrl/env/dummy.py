@@ -10,15 +10,16 @@ class DummyVecEnv(VectorEnv):
         super(DummyVecEnv, self).__init__(len(make_env), env.observation_space, env.action_space)
 
     def reset(self):
-        return merge_map(np.asarray, tuple(env.reset() for env in self.envs))
+        return merge_map(np.asarray, tuple(env.reset()[0] for env in self.envs))
 
     def step(self, actions):
         results = (reset_after_done(env, action) for env, action in zip(self.envs, actions))
-        observations, rewards, dones, infos = zip(*results)
+        observations, rewards, terminateds, truncateds, infos = zip(*results)
         observations = merge_map(np.asarray, observations)
         rewards = np.asarray(rewards)
-        dones = np.asarray(dones)
-        return observations, rewards, dones, infos
+        terminateds = np.asarray(terminateds)
+        truncateds = np.asarray(truncateds)
+        return observations, rewards, terminateds, truncateds, infos
 
     def render(self):
         for env in self.envs:
@@ -26,7 +27,7 @@ class DummyVecEnv(VectorEnv):
 
     def seed(self, seed):
         for i, env in enumerate(self.envs):
-            env.seed(seed + i)
+            env.reset(seed=seed + i)
 
     def close(self):
         super(DummyVecEnv, self).close()

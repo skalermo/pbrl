@@ -1,7 +1,7 @@
 from typing import Optional, List, Type
 
 import torch
-from gym.spaces import Box, Discrete, Space
+from gymnasium.spaces import Box, Discrete, Space
 
 from pbrl.algorithms.ppo.net import Actor, Critic
 from pbrl.common.map import auto_map, map_cpu

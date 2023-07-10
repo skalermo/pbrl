@@ -1,4 +1,4 @@
-import gym
+import gymnasium
 import numpy as np
 import torch
 
@@ -9,8 +9,8 @@ from pbrl.env import DummyVecEnv
 
 def main(env='CartPole-v1', reward_threshold=495., seed=0):
     # define train and test environment
-    env_train = DummyVecEnv([lambda: gym.make(env) for _ in range(20)])
-    env_test = DummyVecEnv([lambda: gym.make(env) for _ in range(2)])
+    env_train = DummyVecEnv([lambda: gymnasium.make(env) for _ in range(20)])
+    env_test = DummyVecEnv([lambda: gymnasium.make(env) for _ in range(2)])
     # define train and test runner
     runner_train = Runner(env=env_train, start_timestep=1000)
     runner_test = Runner(env=env_test)

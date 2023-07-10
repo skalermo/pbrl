@@ -21,7 +21,8 @@ class Runner(BaseRunner):
                 actions, log_probs, self.states_actor = policy.step(observations, self.states_actor)
             else:
                 actions, self.states_actor = policy.act(observations, self.states_actor)
-            self.observations, rewards, dones, infos = self.env.step(policy.wrap_actions(actions))
+            self.observations, rewards, terminateds, truncateds, infos = self.env.step(policy.wrap_actions(actions))
+            dones = [te or tr for te, tr in zip(terminateds, truncateds)]
 
             timestep += self.env_num
             self.episode_rewards += rewards
